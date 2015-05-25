@@ -3,6 +3,8 @@
   <arg name="publish_rate" default="60"/>
   <arg name="shutdown_after_sending" default="3600"/>  
   <arg name="message_payload_size" default="0"/>
+  <arg name="use_message_pointer" default="true"/>
+  <arg name="every_message_new" default="true"/>
 
   <node pkg="nodelet" type="nodelet" name="Publisher" args="standalone nodelets_test1/Publisher"
   		required="true"
@@ -10,6 +12,8 @@
        <param name="publish_rate" value="$(arg publish_rate)" />
        <param name="shutdown_after_sending" value="$(arg shutdown_after_sending)" />
        <param name="message_payload_size" value="$(arg message_payload_size)" />
+       <param name="use_message_pointer" type="bool" value="$(arg use_message_pointer)" />
+       <param name="every_message_new" type="bool" value="$(arg every_message_new)" />     
   </node>
   <node pkg="nodelet" type="nodelet" name="Subscriber" args="standalone nodelets_test1/Subscriber" output="screen">
        <param name="report_count_interval" value="$(arg report_count_interval)" />
