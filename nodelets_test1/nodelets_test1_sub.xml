@@ -1,0 +1,7 @@
+<library path="lib/libnodelets_test1_sub">
+<class name="nodelets_test1/Subscriber" type="nodelets_test1::Subscriber" base_class_type="nodelet::Nodelet">
+<description>
+A nodelet to subscribe to messages.
+</description>
+</class>
+</library>

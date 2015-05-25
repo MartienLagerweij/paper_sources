@@ -1,0 +1,24 @@
+<launch>
+  <arg name="report_count_interval" default="60"/>
+  <arg name="publish_rate" default="60"/>
+  <arg name="shutdown_after_sending" default="1800"/>  
+  <arg name="message_payload_size" default="0"/>
+  <arg name="launch_prefix" default=""/>
+  <arg name="use_message_pointer" default="true"/>
+  <arg name="every_message_new" default="true"/>
+
+  <node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager" output="screen" launch-prefix="$(arg launch_prefix)"
+  		required="true" >
+        <param name="num_worker_threads" value="8" />
+  </node>
+  <node pkg="nodelet" type="nodelet" name="Publisher" args="load nodelets_test1/Publisher nodelet_manager" output="screen">
+       <param name="publish_rate" value="$(arg publish_rate)" />
+       <param name="shutdown_after_sending" value="$(arg shutdown_after_sending)" />
+       <param name="message_payload_size" value="$(arg message_payload_size)" />
+       <param name="use_message_pointer" type="bool" value="$(arg use_message_pointer)" />
+       <param name="every_message_new" type="bool" value="$(arg every_message_new)" />     
+  </node>
+  <node pkg="nodelet" type="nodelet" name="Subscriber" args="load nodelets_test1/Subscriber nodelet_manager" output="screen">
+       <param name="report_count_interval" value="$(arg report_count_interval)" />
+  </node>
+</launch>

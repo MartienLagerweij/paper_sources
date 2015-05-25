@@ -1,0 +1,18 @@
+<launch>
+  <arg name="report_count_interval" default="60"/>
+  <arg name="publish_rate" default="60"/>
+  <arg name="shutdown_after_sending" default="300"/>  
+  <arg name="message_payload_size" default="0"/>
+  <arg name="launch_prefix" default=""/>
+  <arg name="transport_hint" default="normal"/>
+
+  <node pkg="pubsub" type="listener" name="listener" output="screen" launch-prefix="$(arg launch_prefix)">
+       <param name="report_count_interval" value="$(arg report_count_interval)" />
+       <param name="transport_hint" value="$(arg transport_hint)" />
+  </node>  
+  <node pkg="pubsub" type="talker" name="talker" output="screen" required="true">
+       <param name="publish_rate" value="$(arg publish_rate)" />
+       <param name="shutdown_after_sending" value="$(arg shutdown_after_sending)" />
+       <param name="message_payload_size" value="$(arg message_payload_size)" />
+  </node>  
+</launch>

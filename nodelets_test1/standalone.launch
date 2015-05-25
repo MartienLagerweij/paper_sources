@@ -1,0 +1,17 @@
+<launch>
+  <arg name="report_count_interval" default="60"/>
+  <arg name="publish_rate" default="60"/>
+  <arg name="shutdown_after_sending" default="3600"/>  
+  <arg name="message_payload_size" default="0"/>
+
+  <node pkg="nodelet" type="nodelet" name="Publisher" args="standalone nodelets_test1/Publisher"
+  		required="true"
+  		output="screen">
+       <param name="publish_rate" value="$(arg publish_rate)" />
+       <param name="shutdown_after_sending" value="$(arg shutdown_after_sending)" />
+       <param name="message_payload_size" value="$(arg message_payload_size)" />
+  </node>
+  <node pkg="nodelet" type="nodelet" name="Subscriber" args="standalone nodelets_test1/Subscriber" output="screen">
+       <param name="report_count_interval" value="$(arg report_count_interval)" />
+  </node>
+</launch>

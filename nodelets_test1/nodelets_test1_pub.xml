@@ -1,0 +1,8 @@
+<library path="lib/libnodelets_test1_pub">
+<class name="nodelets_test1/Publisher" type="nodelets_test1::Publisher" base_class_type="nodelet::Nodelet">
+<description>
+A nodelet to publish messages.
+</description>
+</class>
+</library>
+
